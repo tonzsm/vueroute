@@ -5,7 +5,7 @@
         <h1>จำนวนคงเหลือ</h1>
       </div>
       <div class="ticket">
-        <h1>{{ ticket }} ใบ</h1>
+        <h1>{{ iticket }} ใบ</h1>
       </div>
       <div class="link" @click="goToHome">
         ย้อนกลับ
@@ -15,12 +15,13 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
   name: 'About',
   computed: {
     ...mapGetters({
-      ticket: 'ticket'
+      iticket: 'iticket',
+      buynum: 'buynum'
     })
   },
   methods: {

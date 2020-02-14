@@ -5,21 +5,28 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    ticket: 10
+    ticket: 10,
+    iticket: 10,
+    buynum: 0,
   },
   mutations: {
     SET_TICKET (state,data) {
-      state.ticket = data
+      state.iticket = data
+    },
+    SET_BUYNUM (state,data){
+      state.buynum = data
     }
   },
   actions: {
     getTicketFromStore ({commit}, payload){
       commit('SET_TICKET',payload)
+    },
+    getBuyNum({commit}, payload){
+      commit('SET_BUYNUM',payload)
     }
   },
   getters: {
-    ticket: (state) => state.ticket
-  },
-  modules: {
+    iticket: (state) => state.iticket,
+    buynum: (state) => state.buynum
   }
 })

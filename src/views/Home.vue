@@ -12,29 +12,40 @@
       <div class="link" @click="goToAbout">
       ดูจำนวนคงเหลือ
       </div>
+      <div>
+        จำนวนตั๋วที่ซื้อ: {{buynum}}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import {mapActions, mapGetters} from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'Home',
-  components: {
+  computed: {
     ...mapGetters({
-      ticket: 'ticket'
+      iticket: 'iticket',
+      buynum: 'buynum'
     })
   },
   methods: {
     ...mapActions({
-      getTicketFromStore: 'getTicketFromStore'
+      getTicketFromStore: 'getTicketFromStore',
+      getBuyNum: 'getBuyNum'
     }),
     getTicket () {
-      let ticketLeft = this.ticket - 1
-      this.getTicketFromStore(ticketLeft)
-      alert('คุณได้รับตั๋วแล้ว')
+      if(this.iticket > 0){
+        let ticketLeft = this.iticket - 1
+        let ticketnum = this.buynum + 1
+        this.getTicketFromStore(ticketLeft)
+        this.getBuyNum(ticketnum)
+        alert('คุณได้รับตั๋วแล้ว')
+      }else{
+        alert('ตั๋วหมดแล้ว')
+      }
     },
     goToAbout () {
       this.$router.push('/about')
