@@ -7,52 +7,29 @@
       <div class="ticket">
         <h1>{{ticket}} ใบ</h1>
       </div>
-    <div class="button">
-      <button @click="addTicket()">
-          Admin
-        </button>
+    <div
+    class="link"
+    @click="goToHome">
+    ย้อนกลับ
     </div>
     </div>
   </div>
 </template>
 
 <script>
-import {mapActions,mapGetters} from 'vuex';
+import {mapGetters} from 'vuex';
 
 export default {
   name: 'About',
-  data(){
-    return{
-      fristT:'',
-      eco:''
-    }
-  },
   computed:{
     ...mapGetters({
       ticket: 'ticket'
-    }),
-    
-    
+    })
   },
   methods: {
-    ...mapActions({
-      getTicketFromStore: 'getTicketFromStore'
-    }),
     goToHome(){
       this.$router.push('/')
-    },
-    addTicket(){
-      var person = prompt("ID", "Admin");
-      if (person == "Admin") {
-        var add = prompt("จำนวนที่ต้องการเพิ่ม ");
-        let ticketLeft = this.ticket
-        ticketLeft = Number(this.ticket) + Number(add) 
-        this.getTicketFromStore(ticketLeft)
-        
-      }
     }
-
-
   }
 }
 </script>>
@@ -81,15 +58,5 @@ export default {
     text-align: right;
     text-decoration: underline;
     cursor: pointer;
-  }
-  .button{
-    margin-top: 10%;
-  }
-  button{
-    outline: none;
-    cursor: pointer;
-    border: 1px solid black;
-    border-radius: 5%;
-    padding: 10px 40%;
   }
 </style>
